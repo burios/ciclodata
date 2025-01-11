@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciclodata</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+        }
+
+        .main-content {
+            margin-left: 260px; /* Ajuste conforme necessário */
+            padding: 20px;
+            border-radius: 15px; /* Borda arredondada */
+            background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro */
+            color: white; /* Texto branco */
+            text-shadow: 1px 1px 2px black; /* Sombra no texto */
+        }
+
+        .carousel-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .carousel {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+            width: 100%;
+        }
+
+        .carousel-images img {
+            min-width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            z-index: 2; /* Garanta que os indicadores fiquem acima do carrossel */
+        }
+
+        .carousel-indicators button {
+            width: 10px;
+            height: 10px;
+            background-color: #ccc;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .carousel-indicators button.active {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+        <%- include('partials/navbar') %>
+        <div class="main-content">
+        <%- body %>
+        </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <div class="carousel-container">
+        <div class="carousel">
+            <div class="carousel-images">
+                <img src="https://scontent.fccm8-1.fna.fbcdn.net/v/t1.6435-9/68878739_2446236982288607_8326716889904447488_n.jpg?stp=dst-jpg_s720x720_tt6&_nc_cat=109&ccb=1-7&_nc_sid=0b6b33&_nc_eui2=AeHd237WbLPbIk08zHGxMn8SEzp_gexhJUcTOn-B7GElR9gE_s4MbmWcyT-jjirDR2dj0X1xwvB7sBD2wmjuo-NC&_nc_ohc=gMmUMTxfii8Q7kNvgHGBzfE&_nc_oc=AdjrCPwuKCczSG_tXuTPwhnH8p6yp47isGvYp955bbD4wtzljiS0lzUYgLdvRnQdbRA&_nc_zt=23&_nc_ht=scontent.fccm8-1.fna&_nc_gid=AX0m5_Np81KPHEzCkHOFpPy&oh=00_AYDvo_toEgId49VRgP2gImzCP6PIM8ngeXH9tVDAY_nudg&oe=67951CF4" alt="Foto 1">
+                <img src="https://i2.wp.com/www.trisportmag.com.br/wp-content/uploads/2021/07/CadenciaAUTO-8.jpg?fit=1600%2C1067&ssl=1" alt="Foto 2">
+                <img src="https://scontent.fccm8-1.fna.fbcdn.net/v/t1.6435-9/146380327_5023733214334518_7822639521273407130_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=XOW0e2xbYOsQ7kNvgFlaErk&_nc_oc=Adgmg_7SoFx2aMcaE6sr3Ar88fQLqLdeFD7tUmKz8odrjJuwTeoaekHjrWHWvUa4TKc&_nc_zt=23&_nc_ht=scontent.fccm8-1.fna&_nc_gid=AmaJWmOAMHReSaGnV1vDRdM&oh=00_AYAiiZOOqq-kFcCwecnigD62nw4-O8XmUNpYdb4wsAUC-Q&oe=678BD5CD" alt="Foto 3">
+            </div>
+        </div>
+        <div class="overlay"></div>
+        <div class="carousel-indicators">
+            <button class="active" data-index="0"></button>
+            <button data-index="1"></button>
+            <button data-index="2"></button>
+        </div>
+    </div>
+    <script>
+        const imagesContainer = document.querySelector('.carousel-images');
+        const indicators = document.querySelectorAll('.carousel-indicators button');
+
+        let currentIndex = 0;
+
+        function updateCarousel(index) {
+            const offset = index * -100; // Deslocamento em %
+            imagesContainer.style.transform = `translateX(${offset}%)`;
+
+            indicators.forEach((button, i) => {
+                button.classList.toggle('active', i === index);
+            });
+        }
+
+        function autoSlide() {
+            currentIndex = (currentIndex + 1) % indicators.length;
+            updateCarousel(currentIndex);
+        }
+
+        setInterval(autoSlide, 15000); // Troca de imagem a cada 3 segundos
+
+        indicators.forEach(button => {
+            button.addEventListener('click', () => {
+                currentIndex = parseInt(button.getAttribute('data-index'));
+                updateCarousel(currentIndex);
+            });
+        });
+    </script>
+</body>
+</html>

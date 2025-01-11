@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+</head>
+<body>
+    <h1>Criar Conta</h1>
+    <form action="/auth/register" method="POST">
+        <div>
+            <label for="username">Usuário:</label>
+            <input type="text" name="username" required>
+        </div>
+        <div>
+            <label for="password">Senha:</label>
+            <input type="password" name="password" required>
+        </div>
+        <div>
+            <label for="role">Papel:</label>
+            <input type="text" name="role" required>
+        </div>
+        <button type="submit">Registrar</button>
+    </form>
+    <% if (messages.length > 0) { %>
+        <p><%= messages[0] %></p> <!-- Exibe a primeira mensagem de erro -->
+    <% } %>
+</body>
+</html>

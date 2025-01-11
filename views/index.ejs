@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CicloData</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+        }
+        .vertical-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 250px;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            padding-top: 10px;
+        }
+        .vertical-navbar .navbar-brand,
+        .vertical-navbar .nav-link {
+            color: #fff !important;
+            padding: 10px 15px;
+        }
+        .vertical-navbar .nav-link:hover {
+            background-color: #333;
+        }
+        .vertical-navbar .navbar-nav {
+            flex-direction: column;
+            width: 100%;
+        }
+        .vertical-navbar .dropdown-menu {
+            background-color: #333;
+            color: #fff;
+        }
+        .vertical-navbar .dropdown-menu .dropdown-item {
+            color: #fff;
+        }
+        .vertical-navbar .dropdown-menu .dropdown-item:hover {
+            background-color: #444;
+        }
+        .main-content {
+            margin-left: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: calc(100% - 250px);
+        }
+        .welcome-section img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+    <div class="main-content">
+        <div class="welcome-section">
+            <h1>Bem-vindo ao CicloData</h1>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe-cfVblI3KP-NQBYh3nc1KUuH0pZ4sBrVwQ&s" alt="CicloData Logo">
+
+        </div>
+    </div>
+</body>
+</html>
